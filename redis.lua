@@ -58,7 +58,7 @@ function handle_cmd(cmd)
 end
 
 function parse_command_array(line, applet)
-    -- get the length of the array then parse 2X for each command
+    -- get the length of the array then read 2X for each command/arg sent
     if string.find(line, "*") == 1 then
         core.Debug("array line: " .. line)
         local arg_length = string.gsub(line, "%D+", "")
@@ -66,7 +66,7 @@ function parse_command_array(line, applet)
         -- cheating lua with indexing at 0
         local i = 0
         while i < tonumber(arg_length)  do
-            -- drop length cause lua reads lines like pros and are lazy
+            -- drop length cause lua reads lines like pros and i was lazy
             local a = applet:getline()
             local arg = string.gsub(applet:getline(), "%W+", "")
             cmd[i] = arg
