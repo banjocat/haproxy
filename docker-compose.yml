@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  haproxyredis:
+    image: banjocat/haproxyredis
+    build: .
+    volumes:
+      - ./redis.lua:/usr/local/etc/haproxy/redis.lua
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - 9090:9090
+      - 6379:6379
+
+  redis:
+    image: redis
+    ports:
+      - 6380:6379
